@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rose Day Card 🌹</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body{
+      margin:0;min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+      font-family:Poppins,system-ui;
+      background:linear-gradient(135deg,#ffe5ec,#fff0f3);
+    }.card{
+  width:360px;height:520px;perspective:1200px;
+}
+
+.inner{
+  width:100%;height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 1s ease;
+}
+
+.card.open .inner{
+  transform:rotateY(180deg);
+}
+
+.side{
+  position:absolute;inset:0;
+  border-radius:20px;
+  backface-visibility:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:24px;
+}
+
+/* FRONT */
+.front{
+  background:linear-gradient(135deg,#ff4d6d,#c9184a);
+  color:#fff;
+}
+
+.front h1{
+  font-family:"Playfair Display",serif;
+  font-size:30px;margin-bottom:10px;
+}
+
+.front input{
+  margin-top:10px;
+  padding:10px 14px;
+  border:none;border-radius:999px;
+  outline:none;font-size:15px;
+  width:80%;
+}
+
+.front button{
+  margin-top:16px;
+  padding:10px 24px;
+  border:none;border-radius:999px;
+  background:#fff;color:#c9184a;
+  font-weight:600;cursor:pointer;
+}
+
+/* BACK */
+.back{
+  background:#fff;
+  transform:rotateY(180deg);
+}
+
+.back h2{
+  font-family:"Playfair Display",serif;
+  color:#c9184a;
+  margin-bottom:10px;
+}
+
+.buttons{
+  position:relative;
+  width:100%;height:120px;
+  margin-top:20px;
+}
+
+.yes,.no{
+  padding:10px 22px;
+  border:none;border-radius:999px;
+  font-weight:600;font-size:14px;
+  cursor:pointer;
+  position:absolute;
+}
+
+.yes{
+  left:40px;top:40px;
+  background:linear-gradient(135deg,#ff4d6d,#c9184a);
+  color:#fff;
+}
+
+.no{
+  left:200px;top:40px;
+  background:#eee;color:#333;
+}
+
+.msg{
+  margin-top:18px;
+  font-size:15px;
+  display:none;
+}
+
+  </style>
+</head>
+<body>  <div class="card" id="card">
+    <div class="inner"><!-- FRONT -->
+  <div class="side front">
+    <h1>Hi Shanvika 🌹</h1>
+    <p>Pehle apna naam likho 👇</p>
+    <input type="text" id="nameInput" placeholder="Your name" />
+    <button id="openBtn">Open Card 💌</button>
+  </div>
+
+  <!-- BACK -->
+  <div class="side back">
+    <h2>Can you accept my Rose Day? 🌹</h2>
+    <p>Choose wisely 😌</p>
+    <div class="buttons">
+      <button class="yes" id="yesBtn">YES</button>
+      <button class="no" id="noBtn">NO</button>
+    </div>
+    <div class="msg" id="msg"></div>
+  </div>
+
+</div>
+
+  </div><script>
+  const card = document.getElementById('card');
+  const openBtn = document.getElementById('openBtn');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const msg = document.getElementById('msg');
+
+  openBtn.addEventListener('click', () => {
+    card.classList.add('open');
+  });
+
+  function moveNo(){
+    const x = Math.random() * 200;
+    const y = Math.random() * 80;
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+  }
+
+  noBtn.addEventListener('mousemove', moveNo);
+  noBtn.addEventListener('touchstart', moveNo);
+
+  yesBtn.addEventListener('click', () => {
+    msg.style.display = 'block';
+    msg.innerHTML = 'Hehehe 😄🌹<br>Thanks for accepting my Rose Day! 💖';
+  });
+</script></body>
+</html>
